@@ -23,10 +23,10 @@ public class MysqlToJava {
         String password = PropertiesUtil.getPropertiesByName("password");
         String sql = "select column_name,data_type,character_maximum_length,column_comment " +
                 "from information_schema.columns where table_schema ='" + dbName + "'  and table_name = '" + tableName + "' order by data_type";//SQL语句
-        DBHelper db1 = new DBHelper(url, name, user, password, sql);//创建DBHelper对象
+        DBHelper db = new DBHelper(url, name, user, password, sql);//创建DBHelper对象
         ResultSet ret = null;
         try {
-            ret = db1.pst.executeQuery();//执行语句，得到结果集
+            ret = db.pst.executeQuery();//执行语句，得到结果集
             Map<String, String> fieldMap = new LinkedHashMap<>();
             Map<String, String> javaTypeMap = new LinkedHashMap<>();
             Map<String, String> jdbcTypeMap = new LinkedHashMap<>();
@@ -66,8 +66,8 @@ public class MysqlToJava {
                     e.printStackTrace();
                 }
             }
-            if (null != db1) {
-                db1.close();
+            if (null != db) {
+                db.close();
             }
         }
     }
