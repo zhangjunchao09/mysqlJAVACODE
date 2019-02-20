@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("${lowclassName}")
+@Repository("${lowclassName}Dao")
 @Mapper
 public interface ${className} {
 

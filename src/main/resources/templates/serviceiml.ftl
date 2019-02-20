@@ -19,14 +19,14 @@ public class ${className}Service implements I${className}Service {
     ${className}Dao ${lowclassName}Dao;
 
     @Override
-    public boolean insert${lowclassName}(${className}Model ${lowclassName}Model) {
+    public boolean insert${className}(${className}Model ${lowclassName}Model) {
         if (null == ${lowclassName}Model) {
             return false;
         }
         boolean flag = true;
         ${className}Po ${lowclassName}Po = new ${className}Po();
         CopyUtils.copyPropertys(${lowclassName}Model, ${lowclassName}Po);
-        int n = ${lowclassName}Dao.insert(${lowclassName}Po);
+        int n = ${lowclassName}Dao.insert${className}(${lowclassName}Po);
         if (n <= 0) {
             flag = false;
         }
@@ -34,14 +34,14 @@ public class ${className}Service implements I${className}Service {
     }
 
     @Override
-    public boolean update${lowclassName}(${className}Model ${lowclassName}Model) {
+    public boolean update${className}(${className}Model ${lowclassName}Model) {
          if (null == ${lowclassName}Model) {
              return false;
          }
          boolean flag = true;
          ${className}Po ${lowclassName}Po = new ${className}Po();
          CopyUtils.copyPropertys(${lowclassName}Model, ${lowclassName}Po);
-         int n = ${lowclassName}Dao.update(${lowclassName}Po);
+         int n = ${lowclassName}Dao.update${className}(${lowclassName}Po);
          if (n <= 0) {
               flag = false;
          }
@@ -49,12 +49,12 @@ public class ${className}Service implements I${className}Service {
     }
 
     @Override
-    public boolean delete${lowclassName}(String pkId) {
+    public boolean delete${className}(String pkId) {
         if (null == pkId || "".equals(pkId)) {
             return false;
         }
         boolean flag = true;
-        int n = ${lowclassName}Dao.delete(pkId);
+        int n = ${lowclassName}Dao.delete${className}(pkId);
         if (n <= 0) {
              flag = false;
         }

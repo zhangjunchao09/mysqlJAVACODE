@@ -7,15 +7,10 @@ import java.sql.SQLException;
 
 public class DBHelper {
 
-    public static final String url = "jdbc:mysql://192.168.1.119:3306/db_personcenter?useUnicode=true&characterEncoding=UTF-8&useSSL=false";
-    public static final String name = "com.mysql.jdbc.Driver";
-    public static final String user = "root";
-    public static final String password = "mysql";
-
     public Connection conn = null;
     public PreparedStatement pst = null;
 
-    public DBHelper(String sql) {
+    public DBHelper(String url, String name, String user, String password, String sql) {
         try {
             Class.forName(name);//指定连接类型
             conn = DriverManager.getConnection(url, user, password);//获取连接

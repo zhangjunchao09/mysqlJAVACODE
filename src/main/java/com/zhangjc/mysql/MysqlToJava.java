@@ -1,6 +1,7 @@
 package com.zhangjc.mysql;
 
 import com.zhangjc.mysql.jdbc.DBHelper;
+import com.zhangjc.mysql.utils.PropertiesUtil;
 import com.zhangjc.mysql.utils.SqlToPoUtil;
 
 import java.sql.ResultSet;
@@ -11,14 +12,18 @@ import java.util.Map;
 public class MysqlToJava {
 
     public static void main(String[] args) {
-        String tableName = "t_person_crowd_subscribe";
-        String dbName = "db_personcenter";
-        String pakage = "com.dtdream.personservice";
-        String basePath = "D:\\autoCode\\";
+        String tableName = PropertiesUtil.getPropertiesByName("tableName");
+        String dbName = PropertiesUtil.getPropertiesByName("dbName");
+        String pakage = PropertiesUtil.getPropertiesByName("pakage");
+        String basePath = PropertiesUtil.getPropertiesByName("basePath");
         String className = SqlToPoUtil.replaceUnderlineAndfirstToUpper(tableName).substring(1);
+        String url = PropertiesUtil.getPropertiesByName("url");
+        String name = PropertiesUtil.getPropertiesByName("name");
+        String user = PropertiesUtil.getPropertiesByName("user");
+        String password = PropertiesUtil.getPropertiesByName("password");
         String sql = "select column_name,data_type,character_maximum_length,column_comment " +
                 "from information_schema.columns where table_schema ='" + dbName + "'  and table_name = '" + tableName + "' order by data_type";//SQL语句
-        DBHelper db1 = new DBHelper(sql);//创建DBHelper对象
+        DBHelper db1 = new DBHelper(url, name, user, password, sql);//创建DBHelper对象
         ResultSet ret = null;
         try {
             ret = db1.pst.executeQuery();//执行语句，得到结果集
