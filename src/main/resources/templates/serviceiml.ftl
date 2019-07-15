@@ -1,10 +1,10 @@
 package ${pakage}.service.iml;
 
 import ${pakage}.common.util.CopyUtils;
-import ${pakage}.po.${className}Po;
-import ${pakage}.service.I${className}Service;
 import ${pakage}.model.${className}Model;
-import ${pakage}.dao.${className}Dao;
+import ${pakage}.service.I${className}Service;
+import ${pakage}.dto.${className}Dto;
+import ${pakage}.mapper.${className}Mapper;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +15,18 @@ import java.util.List;
 @Service("${lowclassName}Service")
 public class ${className}Service implements I${className}Service {
 
-    @Resource(name="${lowclassName}Dao")
-    ${className}Dao ${lowclassName}Dao;
+    @Resource(name="${lowclassName}Mapper")
+    ${className}Mapper ${lowclassName}Mapper;
 
     @Override
-    public boolean insert${className}(${className}Model ${lowclassName}Model) {
-        if (null == ${lowclassName}Model) {
+    public boolean insert${className}(${className}Dto ${lowclassName}Dto) {
+        if (null == ${lowclassName}Dto) {
             return false;
         }
         boolean flag = true;
-        ${className}Po ${lowclassName}Po = new ${className}Po();
-        CopyUtils.copyPropertys(${lowclassName}Model, ${lowclassName}Po);
-        int n = ${lowclassName}Dao.insert${className}(${lowclassName}Po);
+        ${className}Model ${lowclassName}Model = new ${className}Model();
+        CopyUtils.copyPropertys(${lowclassName}Dto, ${lowclassName}Model);
+        int n = ${lowclassName}Mapper.insert${className}(${lowclassName}Model);
         if (n <= 0) {
             flag = false;
         }
@@ -34,14 +34,14 @@ public class ${className}Service implements I${className}Service {
     }
 
     @Override
-    public boolean update${className}(${className}Model ${lowclassName}Model) {
-         if (null == ${lowclassName}Model) {
+    public boolean update${className}(${className}Dto ${lowclassName}Dto) {
+         if (null == ${lowclassName}Dto) {
              return false;
          }
          boolean flag = true;
-         ${className}Po ${lowclassName}Po = new ${className}Po();
-         CopyUtils.copyPropertys(${lowclassName}Model, ${lowclassName}Po);
-         int n = ${lowclassName}Dao.update${className}(${lowclassName}Po);
+         ${className}Model ${lowclassName}Model = new ${className}Model();
+         CopyUtils.copyPropertys(${lowclassName}Dto, ${lowclassName}Model);
+         int n = ${lowclassName}Mapper.update${className}(${lowclassName}Model);
          if (n <= 0) {
               flag = false;
          }
@@ -54,7 +54,7 @@ public class ${className}Service implements I${className}Service {
             return false;
         }
         boolean flag = true;
-        int n = ${lowclassName}Dao.delete${className}(${primaryKey});
+        int n = ${lowclassName}Mapper.delete${className}(${primaryKey});
         if (n <= 0) {
              flag = false;
         }
@@ -62,26 +62,26 @@ public class ${className}Service implements I${className}Service {
     }
 
     @Override
-    public ${className}Model get${className}(String ${primaryKey}) {
+    public ${className}Dto get${className}(String ${primaryKey}) {
          if (null == ${primaryKey} || "".equals(${primaryKey})) {
              return null;
          }
-         ${className}Po ${lowclassName}Po = ${lowclassName}Dao.get${className}(${primaryKey});
-         ${className}Model ${lowclassName}Model = new ${className}Model();
-         CopyUtils.copyPropertys(${lowclassName}Po, ${lowclassName}Model);
-         return ${lowclassName}Model;
+         ${className}Model ${lowclassName}Model = ${lowclassName}Mapper.get${className}(${primaryKey});
+         ${className}Dto ${lowclassName}Dto = new ${className}Dto();
+         CopyUtils.copyPropertys(${lowclassName}Model, ${lowclassName}Dto);
+         return ${lowclassName}Dto;
     }
 
     @Override
-    public List<${className}Model> get${className}s() {
-        List<${className}Po> ${lowclassName}Pos = ${lowclassName}Dao.get${className}s();
-        List<${className}Model> ${lowclassName}Models = new ArrayList<>();
-        for (${className}Po ${lowclassName}Po: ${lowclassName}Pos) {
-            ${className}Model ${lowclassName}Model = new ${className}Model();
-            CopyUtils.copyPropertys(${lowclassName}Po, ${lowclassName}Model);
-            ${lowclassName}Models.add(${lowclassName}Model);
+    public List<${className}Dto> get${className}s() {
+        List<${className}Model> ${lowclassName}Models = ${lowclassName}Mapper.get${className}s();
+        List<${className}Dto> ${lowclassName}Dtos = new ArrayList<>();
+        for (${className}Model ${lowclassName}Model: ${lowclassName}Models) {
+            ${className}Dto ${lowclassName}Dto = new ${className}Dto();
+            CopyUtils.copyPropertys(${lowclassName}Model, ${lowclassName}Dto);
+            ${lowclassName}Dtos.add(${lowclassName}Dto);
         }
-        return ${lowclassName}Models;
+        return ${lowclassName}Dtos;
     }
 
 }

@@ -44,7 +44,7 @@ class CreateCode {
     }
 
     static void createPo(Map<String, String> javaTypeMap, String basePath, String pakage, String className) {
-        String path = basePath + "po";//所创建文件的路径
+        String path = basePath + "model";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
             f.mkdirs();//创建目录
@@ -63,16 +63,16 @@ class CreateCode {
             typeMap.put(field, javaType);
         }
         root.put("typeMap", typeMap);
-        FreeMarkeUtil.fprint(path, "po.ftl", root, fileName);
+        FreeMarkeUtil.fprint(path, "model.ftl", root, fileName);
     }
 
-    public static void createModel(Map<String, String> javaTypeMap, String basePath, String pakage, String className) {
-        String path = basePath + "model";//所创建文件的路径
+    public static void createDto(Map<String, String> javaTypeMap, String basePath, String pakage, String className) {
+        String path = basePath + "dto";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
             f.mkdirs();//创建目录
         }
-        String fileName = className + "Model.java";//文件名及类型
+        String fileName = className + "Dto.java";//文件名及类型
         Map<String, Object> root = new HashMap<>();
         root.put("className", className);
         root.put("lowclassName", SqlToPoUtil.toLowerCaseFirstOne(className));
@@ -92,7 +92,7 @@ class CreateCode {
             typeMap.put(field, javaType);
         }
         root.put("typeMap", typeMap);
-        FreeMarkeUtil.fprint(path, "model.ftl", root, fileName);
+        FreeMarkeUtil.fprint(path, "dto.ftl", root, fileName);
     }
 
     public static void createDao(String basePath, String pakage, String className, String primaryKey) {
@@ -101,7 +101,7 @@ class CreateCode {
         if (!f.exists()) {
             f.mkdirs();//创建目录
         }
-        String fileName = className + "Dao.java";//文件名及类型
+        String fileName = className + "Mapper.java";//文件名及类型
         Map<String, Object> root = new HashMap<>();
         root.put("className", className);
         root.put("lowclassName", SqlToPoUtil.toLowerCaseFirstOne(className));

@@ -36,7 +36,7 @@ public class MysqlToJava {
             CreateCode.createDao(basePath, pakage, className, primaryKey);
             CreateCode.createService(basePath, pakage, className, primaryKey);
             CreateCode.createServiceIml(basePath, pakage, className, primaryKey);
-            CreateCode.createModel(javaTypeMap, basePath, pakage, className);
+            CreateCode.createDto(javaTypeMap, basePath, pakage, className);
             CreateCode.createPo(javaTypeMap, basePath, pakage, className);
             CreateCode.createMapper(fieldMap, jdbcTypeMap, basePath, pakage, className, tableName, primaryKey, primaryKeyField);
         } catch (SQLException e) {

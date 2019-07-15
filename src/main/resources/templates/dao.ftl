@@ -1,24 +1,24 @@
-package ${pakage}.dao;
+package ${pakage}.mapper;
 
-import ${pakage}.po.${className}Po;
+import ${pakage}.model.${className}Model;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("${lowclassName}Dao")
+@Repository("${lowclassName}Mapper")
 @Mapper
-public interface ${className} {
+public interface ${className}Mapper {
 
-    int insert${className}(${className}Po ${lowclassName}Po);
+    int insert${className}(${className}Model ${lowclassName}Model);
 
-    int update${className}(${className}Po ${lowclassName}Po);
+    int update${className}(${className}Model ${lowclassName}Model);
 
     int delete${className}(@Param("${primaryKey}") String ${primaryKey});
 
-    ${className}Po get${className}(@Param("${primaryKey}") String ${primaryKey});
+    ${className}Model get${className}(@Param("${primaryKey}") String ${primaryKey});
 
-    List<${className}Po> get${className}s();
+    List<${className}Model> get${className}s();
 
 }

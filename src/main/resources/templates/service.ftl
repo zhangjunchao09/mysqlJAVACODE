@@ -1,19 +1,19 @@
 package ${pakage}.service;
 
-import ${pakage}.model.${className}Model;
+import ${pakage}.dto.${className}Dto;
 
 import java.util.List;
 
 public interface I${className}Service {
 
-    boolean insert${className}(${className}Model ${lowclassName}Model);
+    boolean insert${className}(${className}Dto ${lowclassName}Dto);
 
-    boolean update${className}(${className}Model ${lowclassName}Model);
+    boolean update${className}(${className}Dto ${lowclassName}Dto);
 
     boolean delete${className}(String ${primaryKey});
 
-    ${className}Model get${className}(String ${primaryKey});
+    ${className}Dto get${className}(String ${primaryKey});
 
-    List<${className}Model> get${className}s();
+    List<${className}Dto> get${className}s();
 
 }
