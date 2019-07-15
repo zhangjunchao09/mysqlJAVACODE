@@ -10,9 +10,9 @@ public interface I${className}Service {
 
     boolean update${className}(${className}Model ${lowclassName}Model);
 
-    boolean delete${className}(String pkId);
+    boolean delete${className}(String ${primaryKey});
 
-    ${className}Model get${className}(String pkId);
+    ${className}Model get${className}(String ${primaryKey});
 
     List<${className}Model> get${className}s();
 

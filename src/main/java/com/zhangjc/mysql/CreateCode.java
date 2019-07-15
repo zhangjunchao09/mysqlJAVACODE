@@ -15,7 +15,9 @@ class CreateCode {
                              String basePath,
                              String pakage,
                              String className,
-                             String tableName) {
+                             String tableName,
+                             String primaryKey,
+                             String primaryKeyField) {
         String path = basePath + "mapper";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
@@ -35,6 +37,8 @@ class CreateCode {
         }
         root.put("fieldMap", fieldMap);
         root.put("typeMap", typeMap);
+        root.put("primaryKey", primaryKey);
+        root.put("primaryKeyField", primaryKeyField);
         FreeMarkeUtil.fprint(path, "mapper.ftl", root, fileName);
 
     }
@@ -91,7 +95,7 @@ class CreateCode {
         FreeMarkeUtil.fprint(path, "model.ftl", root, fileName);
     }
 
-    public static void createDao(String basePath, String pakage, String className) {
+    public static void createDao(String basePath, String pakage, String className, String primaryKey) {
         String path = basePath + "dao";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
@@ -102,10 +106,11 @@ class CreateCode {
         root.put("className", className);
         root.put("lowclassName", SqlToPoUtil.toLowerCaseFirstOne(className));
         root.put("pakage", pakage);
+        root.put("primaryKey", primaryKey);
         FreeMarkeUtil.fprint(path, "dao.ftl", root, fileName);
     }
 
-    public static void createService(String basePath, String pakage, String className) {
+    public static void createService(String basePath, String pakage, String className, String primaryKey) {
         String path = basePath + "service";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
@@ -116,10 +121,11 @@ class CreateCode {
         root.put("className", className);
         root.put("lowclassName", SqlToPoUtil.toLowerCaseFirstOne(className));
         root.put("pakage", pakage);
+        root.put("primaryKey", primaryKey);
         FreeMarkeUtil.fprint(path, "service.ftl", root, fileName);
     }
 
-    public static void createServiceIml(String basePath, String pakage, String className) {
+    public static void createServiceIml(String basePath, String pakage, String className, String primaryKey) {
         String path = basePath + "serviceiml";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
@@ -130,6 +136,7 @@ class CreateCode {
         root.put("className", className);
         root.put("lowclassName", SqlToPoUtil.toLowerCaseFirstOne(className));
         root.put("pakage", pakage);
+        root.put("primaryKey", primaryKey);
         FreeMarkeUtil.fprint(path, "serviceiml.ftl", root, fileName);
 
     }

@@ -9,14 +9,14 @@
     <insert id="insert${className}">
         insert into ${tableName} (
         <#list fieldMap?keys as key>
-            <#if key != "pk_id">
+            <#if key != "${primaryKeyField}">
             ${key},
             </#if>
         </#list>
         )
         values (
         <#list fieldMap?keys as key>
-            <#if key != "pk_id">
+            <#if key != "${primaryKeyField}">
             <@mapperEl fieldMap[key] typeMap[key]/>,
             </#if>
         </#list>
@@ -27,19 +27,19 @@
         SELECT
         sms_receiver as smsReceiver,
         ding_receiver as dingReceiver,
-        pk_id as pkId,
+        ${primaryKeyField} as ${primaryKey},
         user_id as userId,
         app_id as appId,
         app_name as appName
         FROM ${tableName}
-        where pk_id = ${r"#{"}pkId}
+        where ${primaryKeyField} = ${r"#{"}${primaryKey}}
     </select>
 
     <select id="get${className}s" resultType="${pakage}.po.${className}Po">
         SELECT
         sms_receiver as smsReceiver,
         ding_receiver as dingReceiver,
-        pk_id as pkId,
+        ${primaryKeyField} as ${primaryKey},
         user_id as userId,
         app_id as appId,
         app_name as appName
@@ -50,17 +50,17 @@
         update ${tableName}
         <set>
         <#list fieldMap?keys as key>
-            <#if key != "pk_id">
+            <#if key != "${primaryKeyField}">
             <if test="${fieldMap[key]} != null" >
                 <@mapperEl fieldMap[key] typeMap[key]/>,
             </if>
             </#if>
         </#list>
         </set>
-        where pk_id = ${r"#{"}pkId}
+        where ${primaryKeyField} = ${r"#{"}${primaryKey}}
     </update>
 
     <delete id="delete${className}" >
-        delete from ${tableName} where pk_id = ${r"#{"}pkId}
+        delete from ${tableName} where ${primaryKeyField} = ${r"#{"}${primaryKey}}
     </delete>
 </mapper>

@@ -49,12 +49,12 @@ public class ${className}Service implements I${className}Service {
     }
 
     @Override
-    public boolean delete${className}(String pkId) {
-        if (null == pkId || "".equals(pkId)) {
+    public boolean delete${className}(String ${primaryKey}) {
+        if (null == ${primaryKey} || "".equals(${primaryKey})) {
             return false;
         }
         boolean flag = true;
-        int n = ${lowclassName}Dao.delete${className}(pkId);
+        int n = ${lowclassName}Dao.delete${className}(${primaryKey});
         if (n <= 0) {
              flag = false;
         }
@@ -62,11 +62,11 @@ public class ${className}Service implements I${className}Service {
     }
 
     @Override
-    public ${className}Model get${className}(String pkId) {
-         if (null == pkId || "".equals(pkId)) {
+    public ${className}Model get${className}(String ${primaryKey}) {
+         if (null == ${primaryKey} || "".equals(${primaryKey})) {
              return null;
          }
-         ${className}Po ${lowclassName}Po = ${lowclassName}Dao.get${className}(pkId);
+         ${className}Po ${lowclassName}Po = ${lowclassName}Dao.get${className}(${primaryKey});
          ${className}Model ${lowclassName}Model = new ${className}Model();
          CopyUtils.copyPropertys(${lowclassName}Po, ${lowclassName}Model);
          return ${lowclassName}Model;

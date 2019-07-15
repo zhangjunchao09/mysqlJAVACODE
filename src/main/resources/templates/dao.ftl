@@ -15,9 +15,9 @@ public interface ${className} {
 
     int update${className}(${className}Po ${lowclassName}Po);
 
-    int delete${className}(@Param("pkId") String pkId);
+    int delete${className}(@Param("${primaryKey}") String ${primaryKey});
 
-    ${className}Po get${className}(@Param("pkId") String pkId);
+    ${className}Po get${className}(@Param("${primaryKey}") String ${primaryKey});
 
     List<${className}Po> get${className}s();
 
