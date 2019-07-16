@@ -4,7 +4,7 @@
 
 <#macro mapperEl field type>${r"#{"}${field}${r",jdbcType="}${type}}</#macro>
 
-<mapper namespace="${pakage}.dao.${className}Dao">
+<mapper namespace="${pakage}.mapper.${className}Mapper">
 
     <insert id="insert${className}">
         insert into ${tableName} (
@@ -23,7 +23,7 @@
         )
     </insert>
 
-    <select id="get${className}" resultType="${pakage}.po.${className}Po">
+    <select id="get${className}" resultType="${pakage}.model.${className}Model">
         SELECT
         sms_receiver as smsReceiver,
         ding_receiver as dingReceiver,
@@ -35,7 +35,7 @@
         where ${primaryKeyField} = ${r"#{"}${primaryKey}}
     </select>
 
-    <select id="get${className}s" resultType="${pakage}.po.${className}Po">
+    <select id="get${className}s" resultType="${pakage}.model.${className}Model">
         SELECT
         sms_receiver as smsReceiver,
         ding_receiver as dingReceiver,
@@ -46,7 +46,7 @@
         FROM ${tableName}
     </select>
 
-    <update id="update${className}" parameterType="${pakage}.${className}Po">
+    <update id="update${className}" parameterType="${pakage}.model.${className}Model">
         update ${tableName}
         <set>
         <#list fieldMap?keys as key>

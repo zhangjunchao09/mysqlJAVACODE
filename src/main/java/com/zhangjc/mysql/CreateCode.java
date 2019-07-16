@@ -43,13 +43,13 @@ class CreateCode {
 
     }
 
-    static void createPo(Map<String, String> javaTypeMap, String basePath, String pakage, String className) {
+    static void createModel(Map<String, String> javaTypeMap, String basePath, String pakage, String className) {
         String path = basePath + "model";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
             f.mkdirs();//创建目录
         }
-        String fileName = className + "Po.java";//文件名及类型
+        String fileName = className + "Model.java";//文件名及类型
         Map<String, Object> root = new HashMap<>();
         root.put("className", className);
         root.put("lowclassName", SqlToPoUtil.toLowerCaseFirstOne(className));

@@ -1,6 +1,6 @@
 package ${pakage}.service;
 
-import ${pakage}.dto.${className}Dto;
+import ${pakage}.api.dto.${className}Dto;
 
 import java.util.List;
 

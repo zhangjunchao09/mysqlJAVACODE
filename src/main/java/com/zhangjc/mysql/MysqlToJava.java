@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
+
 public class MysqlToJava {
 
     public static void main(String[] args) {
@@ -37,7 +38,7 @@ public class MysqlToJava {
             CreateCode.createService(basePath, pakage, className, primaryKey);
             CreateCode.createServiceIml(basePath, pakage, className, primaryKey);
             CreateCode.createDto(javaTypeMap, basePath, pakage, className);
-            CreateCode.createPo(javaTypeMap, basePath, pakage, className);
+            CreateCode.createModel(javaTypeMap, basePath, pakage, className);
             CreateCode.createMapper(fieldMap, jdbcTypeMap, basePath, pakage, className, tableName, primaryKey, primaryKeyField);
         } catch (SQLException e) {
             e.printStackTrace();

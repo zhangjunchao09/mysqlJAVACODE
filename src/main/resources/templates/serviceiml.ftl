@@ -1,10 +1,10 @@
 package ${pakage}.service.iml;
 
-import ${pakage}.common.util.CopyUtils;
 import ${pakage}.model.${className}Model;
 import ${pakage}.service.I${className}Service;
-import ${pakage}.dto.${className}Dto;
+import ${pakage}.api.dto.${className}Dto;
 import ${pakage}.mapper.${className}Mapper;
+import org.springframework.beans.BeanUtils;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class ${className}Service implements I${className}Service {
         }
         boolean flag = true;
         ${className}Model ${lowclassName}Model = new ${className}Model();
-        CopyUtils.copyPropertys(${lowclassName}Dto, ${lowclassName}Model);
+        BeanUtils.copyProperties(${lowclassName}Dto, ${lowclassName}Model);
         int n = ${lowclassName}Mapper.insert${className}(${lowclassName}Model);
         if (n <= 0) {
             flag = false;
@@ -40,7 +40,7 @@ public class ${className}Service implements I${className}Service {
          }
          boolean flag = true;
          ${className}Model ${lowclassName}Model = new ${className}Model();
-         CopyUtils.copyPropertys(${lowclassName}Dto, ${lowclassName}Model);
+         BeanUtils.copyProperties(${lowclassName}Dto, ${lowclassName}Model);
          int n = ${lowclassName}Mapper.update${className}(${lowclassName}Model);
          if (n <= 0) {
               flag = false;
@@ -68,7 +68,7 @@ public class ${className}Service implements I${className}Service {
          }
          ${className}Model ${lowclassName}Model = ${lowclassName}Mapper.get${className}(${primaryKey});
          ${className}Dto ${lowclassName}Dto = new ${className}Dto();
-         CopyUtils.copyPropertys(${lowclassName}Model, ${lowclassName}Dto);
+         BeanUtils.copyProperties(${lowclassName}Model, ${lowclassName}Dto);
          return ${lowclassName}Dto;
     }
 
@@ -78,7 +78,7 @@ public class ${className}Service implements I${className}Service {
         List<${className}Dto> ${lowclassName}Dtos = new ArrayList<>();
         for (${className}Model ${lowclassName}Model: ${lowclassName}Models) {
             ${className}Dto ${lowclassName}Dto = new ${className}Dto();
-            CopyUtils.copyPropertys(${lowclassName}Model, ${lowclassName}Dto);
+            BeanUtils.copyProperties(${lowclassName}Model, ${lowclassName}Dto);
             ${lowclassName}Dtos.add(${lowclassName}Dto);
         }
         return ${lowclassName}Dtos;
