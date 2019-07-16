@@ -49,7 +49,7 @@
         <#list fieldMap?keys as key>
             <#if key != "${primaryKeyField}">
             <if test="${fieldMap[key]} != null" >
-                <@mapperEl fieldMap[key] typeMap[key]/>,
+                ${key} = <@mapperEl fieldMap[key] typeMap[key]/><#if key_has_next>,</#if>
             </if>
             </#if>
         </#list>
