@@ -34,11 +34,12 @@ public class MysqlToJava {
             Map<String, String> fieldMap = dataGenerate.getFieldMap();
             Map<String, String> javaTypeMap = dataGenerate.getJavaTypeMap();
             Map<String, String> jdbcTypeMap = dataGenerate.getJdbcTypeMap();
+            Map<String, String> commentMap = dataGenerate.getCommentMap();
             CreateCode.createDao(basePath, pakage, className, primaryKey);
             CreateCode.createService(basePath, pakage, className, primaryKey);
             CreateCode.createServiceIml(basePath, pakage, className, primaryKey);
-            CreateCode.createDto(javaTypeMap, basePath, pakage, className);
-            CreateCode.createModel(javaTypeMap, basePath, pakage, className);
+            CreateCode.createDto(javaTypeMap, commentMap, basePath, pakage, className);
+            CreateCode.createModel(javaTypeMap, commentMap, basePath, pakage, className);
             CreateCode.createMapper(fieldMap, jdbcTypeMap, basePath, pakage, className, tableName, primaryKey, primaryKeyField);
         } catch (SQLException e) {
             e.printStackTrace();

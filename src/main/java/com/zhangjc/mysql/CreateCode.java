@@ -43,7 +43,7 @@ class CreateCode {
 
     }
 
-    static void createModel(Map<String, String> javaTypeMap, String basePath, String pakage, String className) {
+    static void createModel(Map<String, String> javaTypeMap, Map<String, String> commentMap, String basePath, String pakage, String className) {
         String path = basePath + "model";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
@@ -61,12 +61,14 @@ class CreateCode {
             String field = SqlToPoUtil.replaceUnderlineAndfirstToUpper(k);
             String javaType = javaTypeMap.get(k);
             typeMap.put(field, javaType);
+            commentMap.put(field, commentMap.get(k));
         }
         root.put("typeMap", typeMap);
+        root.put("commentMap", commentMap);
         FreeMarkeUtil.fprint(path, "model.ftl", root, fileName);
     }
 
-    public static void createDto(Map<String, String> javaTypeMap, String basePath, String pakage, String className) {
+    public static void createDto(Map<String, String> javaTypeMap, Map<String, String> commentMap, String basePath, String pakage, String className) {
         String path = basePath + "dto";//所创建文件的路径
         File f = new File(path);
         if (!f.exists()) {
@@ -90,8 +92,10 @@ class CreateCode {
                 javaType = "String";
             }
             typeMap.put(field, javaType);
+            commentMap.put(field, commentMap.get(k));
         }
         root.put("typeMap", typeMap);
+        root.put("commentMap", commentMap);
         FreeMarkeUtil.fprint(path, "dto.ftl", root, fileName);
     }
 
