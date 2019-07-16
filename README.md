@@ -11,7 +11,8 @@ user
 password
 # mysql 库名 用户名 密码
 tableName=t_person_crowd_subscribe
-# mysql 需要生成代码的表名 t_开头
+# mysql 需要生成代码的表名
+primaryKey 表自增主键
 
 pakage=com.zhangjc.person
 # 生成java代码包名

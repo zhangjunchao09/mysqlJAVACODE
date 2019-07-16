@@ -6,18 +6,21 @@
 
 <mapper namespace="${pakage}.mapper.${className}Mapper">
 
-    <insert id="insert${className}">
+    <insert id="insert${className}" parameterType="${pakage}.model.${className}Model">
+        <selectKey keyProperty="${primaryKey}" resultType="java.lang.Integer">
+                select LAST_INSERT_ID()
+        </selectKey>
         insert into ${tableName} (
         <#list fieldMap?keys as key>
             <#if key != "${primaryKeyField}">
-            ${key},
+            ${key}<#if key_has_next>,</#if>
             </#if>
         </#list>
         )
         values (
         <#list fieldMap?keys as key>
             <#if key != "${primaryKeyField}">
-            <@mapperEl fieldMap[key] typeMap[key]/>,
+            <@mapperEl fieldMap[key] typeMap[key]/><#if key_has_next>,</#if>
             </#if>
         </#list>
         )
@@ -25,24 +28,18 @@
 
     <select id="get${className}" resultType="${pakage}.model.${className}Model">
         SELECT
-        sms_receiver as smsReceiver,
-        ding_receiver as dingReceiver,
-        ${primaryKeyField} as ${primaryKey},
-        user_id as userId,
-        app_id as appId,
-        app_name as appName
+        <#list fieldMap?keys as key>
+        ${key} as ${fieldMap[key]}<#if key_has_next>,</#if>
+        </#list>
         FROM ${tableName}
         where ${primaryKeyField} = ${r"#{"}${primaryKey}}
     </select>
 
     <select id="get${className}s" resultType="${pakage}.model.${className}Model">
         SELECT
-        sms_receiver as smsReceiver,
-        ding_receiver as dingReceiver,
-        ${primaryKeyField} as ${primaryKey},
-        user_id as userId,
-        app_id as appId,
-        app_name as appName
+        <#list fieldMap?keys as key>
+                ${key} as  ${fieldMap[key]} <#if key_has_next>,</#if>
+        </#list>
         FROM ${tableName}
     </select>
 
